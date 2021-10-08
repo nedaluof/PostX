@@ -1,5 +1,5 @@
 # PostX
-## Simple Android Application apply the clean architecture with multi module and dependency injection between them
+## Simple Android Application that apply the clean architecture with multi module and dependency injection between them
 
 
 ### License
