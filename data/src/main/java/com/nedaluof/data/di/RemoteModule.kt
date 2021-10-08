@@ -1,9 +1,9 @@
-package com.nedaluof.domain.di
+package com.nedaluof.data.di
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.nedaluof.domain.BuildConfig
-import com.nedaluof.domain.remote.ApiService
+import com.nedaluof.data.BuildConfig
+import com.nedaluof.data.remotesource.ApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -44,7 +44,10 @@ object RemoteModule {
 
     @Singleton
     @Provides
-    fun provideRetrofitClient(client: OkHttpClient, gson: Gson): Retrofit = Retrofit.Builder()
+    fun provideRetrofitClient(
+        client: OkHttpClient,
+        gson: Gson
+    ): Retrofit = Retrofit.Builder()
         .baseUrl(BuildConfig.BASE_URL)
         .client(client)
         .addConverterFactory(GsonConverterFactory.create(gson))
@@ -52,6 +55,7 @@ object RemoteModule {
 
     @Singleton
     @Provides
-    fun provideApiService(client: Retrofit): ApiService =
+    fun provideApiService(
+        client: Retrofit): ApiService =
         client.create(ApiService::class.java)
 }

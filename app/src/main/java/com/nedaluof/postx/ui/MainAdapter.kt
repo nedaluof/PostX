@@ -1,5 +1,6 @@
 package com.nedaluof.postx.ui
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -13,9 +14,8 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.VH>() {
 
     private val dataList = ArrayList<Post>()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
-        return VH(ItemPostBinding.inflate(LayoutInflater.from(parent.context), parent, false))
-    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+        VH(ItemPostBinding.inflate(LayoutInflater.from(parent.context), parent, false))
 
     override fun onBindViewHolder(holder: VH, position: Int) {
         holder.bindNow(dataList[position])
@@ -23,6 +23,7 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.VH>() {
 
     override fun getItemCount() = dataList.size
 
+    @SuppressLint("NotifyDataSetChanged")
     fun addData(list: List<Post>) {
         dataList.addAll(list)
         notifyDataSetChanged()

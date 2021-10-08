@@ -5,13 +5,14 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
 
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
@@ -20,6 +21,9 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            buildConfigField("String", "BASE_URL", "\"$base_url\"")
         }
     }
     compileOptions {
@@ -34,6 +38,11 @@ android {
 dependencies {
     //internal module dependency
     api project(':entities')
+    api project(':domain')
+    //Remote
+    api("com.squareup.retrofit2:retrofit:$retrofit_version") { exclude module: 'okhttp' }
+    api "com.squareup.retrofit2:converter-gson:$gson_converter_version"
+    api "com.squareup.okhttp3:logging-interceptor:$interceptor_version"
     //Hilt dependencies injection
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"

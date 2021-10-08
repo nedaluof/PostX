@@ -1,3 +1,2 @@
-include ':domain'
-include ':app' , ':entities'
+include ':app' , ':entities' , ':data' , ':domain'
 rootProject.name = "PostX"

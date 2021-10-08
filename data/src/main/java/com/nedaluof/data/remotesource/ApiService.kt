@@ -1,7 +1,6 @@
-package com.nedaluof.domain.remote
+package com.nedaluof.data.remotesource
 
 import com.nedaluof.entities.Post
-import retrofit2.Response
 import retrofit2.http.GET
 
 /**
@@ -13,5 +12,5 @@ interface ApiService {
      * Get 100 posts from Api-endPoint
      * */
     @GET("/posts")
-    suspend fun getPosts(): Response<List<Post>>
+    suspend fun getPosts(): List<Post>
 }
